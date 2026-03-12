@@ -1,0 +1,118 @@
+---
+import ugadiImage from '../assets/ugadi.jpg';
+
+const basePath = import.meta.env.BASE_URL.endsWith('/')
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+const enterPath = `${basePath}enter/`;
+---
+
+<section class="safe-container flex min-h-screen items-center">
+  <div class="w-full rounded-[2rem] border border-[var(--line)] bg-[linear-gradient(180deg,rgba(12,22,37,0.9),rgba(8,17,31,0.82))] px-6 py-8 shadow-[0_24px_80px_rgba(4,10,18,0.48)]">
+    <div class="mb-5 inline-flex items-center gap-2 rounded-full border border-[var(--line)] bg-[rgba(214,179,106,0.08)] px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.28em] text-[var(--muted)]">
+      Ugadi 2026 Campus Celebration
+    </div>
+
+    <div class="relative isolate overflow-hidden rounded-[1.75rem] border border-[rgba(214,179,106,0.18)] bg-[radial-gradient(circle_at_top,rgba(214,179,106,0.14),transparent_42%),linear-gradient(180deg,rgba(13,24,43,0.94),rgba(9,18,31,0.96))] px-5 py-7 text-center">
+      <div class="pointer-events-none absolute inset-x-12 top-8 h-28 rounded-full bg-[rgba(214,179,106,0.12)] blur-3xl"></div>
+      <img
+        src={ugadiImage.src}
+        alt="Ugadi 2026 emblem"
+        class="hero-mark relative z-10 mx-auto w-[78%] max-w-[18rem] animate-[float_5.5s_ease-in-out_infinite]"
+      />
+      <div class="relative z-10 mt-6 space-y-4">
+        <p class="section-kicker mx-auto">Sri Parabhava Nama Samvatsara</p>
+        <h1 class="font-display text-[2.5rem] leading-[0.92] text-[var(--text)]">
+          <span class="hero-line block">Sri Parabhava</span>
+          <span class="hero-line block">Nama Samvatsara</span>
+          <span class="hero-line block text-[var(--accent)]">Ugadi 2026</span>
+        </h1>
+        <div class="gold-divider mx-auto"></div>
+        <p class="mx-auto max-w-[18rem] text-sm leading-6 text-[var(--muted)]">
+          Sri Parabhava Nama Samvatsara begins here. Enter to view the annual Rasi Phalalu prepared
+          in English for the campus Ugadi celebration.
+        </p>
+      </div>
+    </div>
+
+    <div class="mt-6 space-y-3 text-center">
+      <a
+        id="enter-panchangam"
+        href={enterPath}
+        class="inline-flex min-h-12 w-full items-center justify-center rounded-full border border-[rgba(214,179,106,0.38)] bg-[linear-gradient(135deg,rgba(214,179,106,0.22),rgba(156,47,31,0.18))] px-5 py-3 text-sm font-semibold tracking-[0.18em] uppercase text-[var(--text)] shadow-[0_18px_40px_rgba(7,12,22,0.45)] transition duration-300 hover:border-[var(--line-strong)] hover:-translate-y-0.5"
+      >
+        Enter Panchangam
+      </a>
+      <p class="text-xs leading-5 text-[var(--muted)]">
+        Sound begins only after your tap.
+      </p>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  const storageKey = 'ugadi-2026-intro-seen';
+  const enterLink = document.getElementById('enter-panchangam');
+
+  try {
+    const enterHref = enterLink?.getAttribute('href') ?? '/';
+    if (window.localStorage.getItem(storageKey) === 'true') {
+      window.location.replace(enterHref);
+    }
+  } catch (error) {
+    console.warn('Unable to access localStorage for intro replay.', error);
+  }
+
+  enterLink?.addEventListener('click', (event) => {
+    event.preventDefault();
+    try {
+      window.localStorage.setItem(storageKey, 'true');
+    } catch (error) {
+      console.warn('Unable to persist intro state.', error);
+    }
+    window.dispatchEvent(new CustomEvent('ugadi:play', { detail: { sound: 'bell' } }));
+    window.setTimeout(() => {
+      window.location.href = enterLink.getAttribute('href') ?? '/';
+    }, 140);
+  });
+</script>
+
+<style>
+  .hero-mark {
+    filter:
+      drop-shadow(0 16px 38px rgba(0, 0, 0, 0.34))
+      drop-shadow(0 0 26px rgba(214, 179, 106, 0.16));
+  }
+
+  .hero-line {
+    opacity: 0;
+    transform: translateY(18px);
+    animation: hero-rise 0.85s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  .hero-line:nth-child(1) {
+    animation-delay: 0.2s;
+  }
+
+  .hero-line:nth-child(2) {
+    animation-delay: 0.38s;
+  }
+
+  .hero-line:nth-child(3) {
+    animation-delay: 0.56s;
+  }
+
+  @keyframes hero-rise {
+    from {
+      opacity: 0;
+      transform: translateY(18px);
+      filter: blur(10px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0);
+    }
+  }
+</style>

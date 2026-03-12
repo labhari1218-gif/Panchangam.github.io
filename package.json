@@ -1,0 +1,39 @@
+{
+  "name": "ugadi-panchangam-2026",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "verify:data": "node scripts/verify-rasi-data.mjs",
+    "report:pdfs": "node scripts/report-pdf-discovery.mjs",
+    "generate:content": "node scripts/generate-rasi-content.mjs",
+    "audit:source": "node scripts/audit-source-vs-pdf.mjs",
+    "generate:audio": "node scripts/generate-audio.mjs",
+    "check": "npm run verify:data && npm run build"
+  },
+  "dependencies": {
+    "@astrojs/react": "^5.0.0",
+    "@tailwindcss/vite": "^4.1.12",
+    "astro": "^6.0.3",
+    "cheerio": "^1.2.0",
+    "howler": "^2.2.4",
+    "motion": "^12.35.2",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "tailwindcss": "^4.2.1"
+  },
+  "devDependencies": {
+    "@types/node": "^24.6.0",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "lamejs-fixed": "^1.2.2",
+    "typescript": "^5.9.3"
+  }
+}

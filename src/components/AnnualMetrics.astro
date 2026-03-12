@@ -1,0 +1,37 @@
+---
+import type { AnnualMetrics as AnnualMetricsType } from '../data/rasi';
+
+type Props = {
+  metrics?: AnnualMetricsType;
+};
+
+const { metrics } = Astro.props;
+
+const items = metrics
+  ? [
+      { label: 'Adayam', value: metrics.adayam },
+      { label: 'Vyayam', value: metrics.vyayam },
+      { label: 'Raja Poojyam', value: metrics.rajaPoojyam },
+      { label: 'Avamanam', value: metrics.avamanam },
+      { label: 'Sesha Number', value: metrics.seshaNumber },
+    ].filter((item) => item.value)
+  : [];
+---
+
+{
+  items.length ? (
+    <section class="panel rounded-[1.75rem] px-5 py-5">
+      <p class="section-kicker">Annual Indicators</p>
+      <div class="mt-4 grid grid-cols-2 gap-3">
+        {
+          items.map((item) => (
+            <div class="rounded-[1.25rem] border border-[rgba(214,179,106,0.14)] bg-[rgba(214,179,106,0.05)] px-3 py-3">
+              <p class="text-[0.68rem] uppercase tracking-[0.22em] text-[var(--muted)]">{item.label}</p>
+              <p class="mt-2 font-display text-[1.9rem] leading-none text-[var(--accent)]">{item.value}</p>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+  ) : null
+}

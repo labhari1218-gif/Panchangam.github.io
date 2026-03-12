@@ -1,0 +1,46 @@
+---
+import type { PlanetaryInfluence } from '../data/rasi';
+
+type Props = {
+  items: PlanetaryInfluence[];
+};
+
+const { items } = Astro.props;
+---
+
+{
+  items.length ? (
+    <section class="panel rounded-[1.75rem] px-5 py-5">
+      <p class="section-kicker">Planetary Influences</p>
+      <div class="mt-4 space-y-3">
+        {
+          items.map((item) => (
+            <article class="rounded-[1.25rem] border border-[rgba(214,179,106,0.16)] bg-[rgba(12,22,37,0.58)] px-4 py-4">
+              <div class="flex items-center justify-between gap-3">
+                <h3 class="font-display text-[1.7rem] text-[var(--text)]">{item.planet}</h3>
+                <span
+                  class:list={[
+                    'rounded-full border px-3 py-1 text-[0.68rem] uppercase tracking-[0.22em]',
+                    item.effect === 'favorable'
+                      ? 'border-[rgba(214,179,106,0.24)] text-[var(--accent)]'
+                      : 'border-[rgba(156,47,31,0.28)] text-[rgba(246,239,221,0.75)]',
+                  ]}
+                >
+                  {item.effect}
+                </span>
+              </div>
+              <p class="mt-3 text-sm leading-7 text-[var(--muted)]">{item.summary}</p>
+              {
+                item.remedyNote ? (
+                  <p class="mt-3 rounded-2xl border border-[rgba(214,179,106,0.12)] bg-[rgba(214,179,106,0.05)] px-3 py-3 text-xs leading-6 text-[rgba(246,239,221,0.78)]">
+                    {item.remedyNote}
+                  </p>
+                ) : null
+              }
+            </article>
+          ))
+        }
+      </div>
+    </section>
+  ) : null
+}

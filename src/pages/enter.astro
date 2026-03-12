@@ -1,0 +1,30 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ZodiacScroller from '../components/ZodiacScroller';
+import { allRasiContent } from '../data/rasi';
+
+const items = allRasiContent.map((rasi) => ({
+  slug: rasi.slug,
+  teluguName: rasi.teluguName,
+  englishName: rasi.englishName,
+  symbolName: rasi.symbolName,
+  symbolAsset: rasi.symbolAsset,
+  dateRangeLabel: rasi.dateRangeLabel,
+}));
+---
+
+<BaseLayout
+  title="Choose Your Rasi | Ugadi 2026"
+  description="Select your Janma Rashi and enter your Sri Parabhava Nama Samvatsara Ugadi 2026-2027 reading."
+>
+  <main class="safe-container py-6">
+    <div class="mb-5 rounded-[1.4rem] border border-[rgba(214,179,106,0.16)] bg-[rgba(214,179,106,0.06)] px-4 py-3 text-center text-[0.72rem] uppercase tracking-[0.28em] text-[var(--muted)]">
+      Sri Parabhava Nama Samvatsara • Ugadi 2026
+    </div>
+    <ZodiacScroller client:load items={items} />
+    <section class="mt-6 rounded-[1.5rem] border border-[rgba(214,179,106,0.14)] bg-[rgba(12,22,37,0.52)] px-4 py-4 text-sm leading-7 text-[var(--muted)]">
+      Each sign page has been adapted for clear web reading while preserving the original source page
+      and local PDF capture for editorial reference.
+    </section>
+  </main>
+</BaseLayout>

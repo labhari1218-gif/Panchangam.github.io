@@ -1,0 +1,45 @@
+---
+import AnnualMetrics from '../../components/AnnualMetrics.astro';
+import BackToRasiSelector from '../../components/BackToRasiSelector.astro';
+import MonthlyHighlights from '../../components/MonthlyHighlights.astro';
+import PlanetaryInfluences from '../../components/PlanetaryInfluences.astro';
+import SignHero from '../../components/SignHero.astro';
+import SignSection from '../../components/SignSection.astro';
+import SourceLink from '../../components/SourceLink.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { allRasiContent } from '../../data/rasi';
+
+export function getStaticPaths() {
+  return allRasiContent.map((rasi) => ({
+    params: { slug: rasi.slug },
+    props: { rasi },
+  }));
+}
+
+const { rasi } = Astro.props;
+---
+
+<BaseLayout
+  title={`${rasi.englishName} | Ugadi 2026 Panchangam`}
+  description={`${rasi.englishName} Ugadi 2026-2027 Panchangam and Rasi Phalalu in English.`}
+>
+  <main class="safe-container space-y-4 py-5">
+    <BackToRasiSelector />
+    <SignHero rasi={rasi} />
+    <AnnualMetrics metrics={rasi.annualMetrics} />
+    <SignSection title="Yearly Theme" content={rasi.yearlyTheme} />
+    <SignSection title="Opportunities" content={rasi.opportunities} />
+    <SignSection title="Caution" content={rasi.caution} />
+    <SignSection title="Studies and Career" content={rasi.studiesCareer} />
+    <SignSection title="Family and Relationships" content={rasi.familyRelationships} />
+    <SignSection title="Health and Wellbeing" content={rasi.healthWellbeing} />
+    <PlanetaryInfluences items={rasi.planetaryInfluences} />
+    <SignSection title="Blessing" content={rasi.blessing} />
+    <MonthlyHighlights items={rasi.monthlyHighlights} />
+    <SourceLink
+      sourceLabel={rasi.sourceLabel}
+      sourceUrl={rasi.sourceUrl}
+      localPdfAsset={rasi.localPdfAsset}
+    />
+  </main>
+</BaseLayout>

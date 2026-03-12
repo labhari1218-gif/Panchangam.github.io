@@ -1,0 +1,31 @@
+---
+import type { RasiEntry } from '../data/rasi';
+
+type Props = {
+  rasi: RasiEntry;
+};
+
+const { rasi } = Astro.props;
+---
+
+<section class="panel rounded-[2rem] px-5 py-6">
+  <p class="section-kicker">{rasi.yearTitle}</p>
+  <div class="mt-4 flex items-start gap-4">
+    <div class="flex h-24 w-24 shrink-0 items-center justify-center overflow-hidden rounded-full border border-[rgba(214,179,106,0.38)] bg-[radial-gradient(circle_at_35%_30%,rgba(255,255,255,0.08),transparent_24%),linear-gradient(180deg,rgba(214,179,106,0.16),rgba(17,24,37,0.15))]">
+      {
+        rasi.symbolAsset ? (
+          <img src={rasi.symbolAsset} alt={`${rasi.englishName} sign art`} class="h-full w-full object-cover object-center" />
+        ) : (
+          <span class="font-display text-lg leading-none text-[var(--accent)]">{rasi.englishName}</span>
+        )
+      }
+    </div>
+    <div class="min-w-0">
+      <p class="text-[0.72rem] uppercase tracking-[0.28em] text-[var(--muted)]">{rasi.teluguName}</p>
+      <h1 class="mt-2 font-display text-[2.4rem] leading-none text-[var(--text)]">{rasi.englishName}</h1>
+      <p class="mt-2 text-sm text-[var(--muted)]">{rasi.symbolName} • {rasi.dateRangeLabel}</p>
+      <div class="gold-divider mt-4"></div>
+    </div>
+  </div>
+  <p class="mt-5 text-sm leading-7 text-[var(--muted)]">{rasi.overview}</p>
+</section>

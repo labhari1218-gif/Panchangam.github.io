@@ -1,0 +1,64 @@
+---
+import type { MonthlyHighlight } from '../data/rasi';
+
+type Props = {
+  items: MonthlyHighlight[];
+};
+
+const { items } = Astro.props;
+---
+
+<section class="panel rounded-[1.75rem] px-5 py-5">
+  <div class="flex items-end justify-between gap-3">
+    <div>
+      <p class="section-kicker">Month by Month</p>
+      <h2 class="mt-2 font-display text-[2rem] text-[var(--text)]">Monthly Highlights</h2>
+    </div>
+    <p class="text-right text-xs leading-5 text-[var(--muted)]">
+      Source-backed
+      <br />
+      monthly notes
+    </p>
+  </div>
+
+  <div class="mt-5 space-y-3">
+    {
+      items.map((item, index) => (
+        <details
+          class="rounded-[1.25rem] border border-[rgba(214,179,106,0.18)] bg-[rgba(12,22,37,0.56)] px-4 py-3"
+          open={index === 0}
+        >
+          <summary class="cursor-pointer list-none font-display text-[1.35rem] text-[var(--text)]">
+            <span class="flex items-center justify-between gap-4">
+              <span>{item.monthLabel}</span>
+              <span class="text-xs uppercase tracking-[0.24em] text-[var(--muted)]">Open</span>
+            </span>
+          </summary>
+          <p class="mt-3 text-sm leading-7 text-[var(--muted)]">{item.summary}</p>
+          {
+            item.favorableDates?.length || item.cautionDates?.length ? (
+              <div class="mt-4 grid gap-3 text-xs leading-5 text-[rgba(246,239,221,0.74)] sm:grid-cols-2">
+                {
+                  item.favorableDates?.length ? (
+                    <div class="rounded-2xl border border-[rgba(214,179,106,0.14)] bg-[rgba(214,179,106,0.06)] px-3 py-2">
+                      <p class="section-kicker !text-[0.62rem]">Favorable Dates</p>
+                      <p class="mt-2">{item.favorableDates.join(' • ')}</p>
+                    </div>
+                  ) : null
+                }
+                {
+                  item.cautionDates?.length ? (
+                    <div class="rounded-2xl border border-[rgba(214,179,106,0.14)] bg-[rgba(156,47,31,0.08)] px-3 py-2">
+                      <p class="section-kicker !text-[0.62rem]">Use Caution</p>
+                      <p class="mt-2">{item.cautionDates.join(' • ')}</p>
+                    </div>
+                  ) : null
+                }
+              </div>
+            ) : null
+          }
+        </details>
+      ))
+    }
+  </div>
+</section>
