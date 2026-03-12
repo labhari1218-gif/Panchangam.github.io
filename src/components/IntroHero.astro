@@ -51,25 +51,10 @@ const enterPath = `${basePath}enter/`;
 </section>
 
 <script is:inline>
-  const storageKey = 'ugadi-2026-intro-seen';
   const enterLink = document.getElementById('enter-panchangam');
-
-  try {
-    const enterHref = enterLink?.getAttribute('href') ?? '/';
-    if (window.localStorage.getItem(storageKey) === 'true') {
-      window.location.replace(enterHref);
-    }
-  } catch (error) {
-    console.warn('Unable to access localStorage for intro replay.', error);
-  }
 
   enterLink?.addEventListener('click', (event) => {
     event.preventDefault();
-    try {
-      window.localStorage.setItem(storageKey, 'true');
-    } catch (error) {
-      console.warn('Unable to persist intro state.', error);
-    }
     window.dispatchEvent(new CustomEvent('ugadi:play', { detail: { sound: 'bell' } }));
     window.setTimeout(() => {
       window.location.href = enterLink.getAttribute('href') ?? '/';
