@@ -396,26 +396,38 @@ export function parseSourceHtml(html, meta) {
 
   const annualMetrics = {
     adayam: extractMetric(bodyText, [
+      /ఆదాయం\s*[-–:]\s*([0-9]+)/i,
       /Adayam \(Income\):\s*([0-9]+)/i,
+      /Income \(Adayam\):\s*([0-9]+)/i,
       /Income\s*[-:]\s*([0-9]+)/i,
     ]),
     vyayam: extractMetric(bodyText, [
+      /వ్యయం\s*[-–:]\s*([0-9]+)/i,
       /Vyayam \(Expenditure\):\s*([0-9]+)/i,
+      /Expenditure \(Vyayam\):\s*([0-9]+)/i,
       /Expenditure\s*[-:]\s*([0-9]+)/i,
     ]),
     rajaPoojyam: extractMetric(bodyText, [
+      /రాజ\s*పూజ్యం\s*[-–:]\s*([0-9]+)/i,
       /Raja Poojyam \(Honor\/Respect\):\s*([0-9]+)/i,
+      /Rajapujyam.*?([0-9]+)/i,
+      /Honor\/Respect \(Raja Poojyam\):\s*([0-9]+)/i,
       /Social Honou?r \(Raja Poojyam\):\s*([0-9]+)/i,
       /Honor\/Social Status\s*[-:]\s*([0-9]+)/i,
       /Social Honor \(Raja Poojyam\):\s*([0-9]+)/i,
     ]),
     avamanam: extractMetric(bodyText, [
+      /అవమానం\s*[-–:]\s*([0-9]+)/i,
       /Avamanam \(Dishonor\/Insult\):\s*([0-9]+)/i,
+      /Dishonor\/Insult \(Avamanam\):\s*([0-9]+)/i,
+      /Humiliation \(Avamanam\):\s*([0-9]+)/i,
       /Dishonor\/Insult\s*[-:]\s*([0-9]+)/i,
       /Dishonor\/Challenges \(Avamanam\):\s*([0-9]+)/i,
     ]),
     seshaNumber:
       extractMetric(bodyText, [
+        /శేష సంఖ్య\s*["“']?([0-9]+)["”']?/i,
+        /Sesha Sankhya.*?["“']?([0-9]+)["”']?/i,
         /Sesha\) number for .*? is ['"]?([0-9]+)['"]?/i,
         /remainder number .*? is ['"]?([0-9]+)['"]?/i,
         /remainder .*? is ['"]?([0-9]+)['"]?/i,

@@ -13,6 +13,7 @@
         "Vyayam metric",
         "Raja Poojyam metric",
         "Avamanam metric",
+        "Sesha metric",
         "Guru annual section",
         "Shani annual section",
         "Rahu annual section",
@@ -21,8 +22,8 @@
       ],
       "mismatches": [],
       "notes": [
-        "OCR used page 1 of the local PDF capture.",
-        "Match status is based on heading, available metrics, available annual section markers, and first month marker."
+        "Compared current JSON content against the live source HTML.",
+        "Metric values are normalized before comparison; status is based on annual metrics, annual planet markers, and the first month heading."
       ]
     }
   },
@@ -36,6 +37,11 @@
       "sourceImage": "images/VrushabhaRasinew.png",
       "matchedSignals": [
         "English heading",
+        "Adayam metric",
+        "Vyayam metric",
+        "Raja Poojyam metric",
+        "Avamanam metric",
+        "Sesha metric",
         "Guru annual section",
         "Shani annual section",
         "Rahu annual section",
@@ -44,8 +50,8 @@
       ],
       "mismatches": [],
       "notes": [
-        "OCR used page 1 of the local PDF capture.",
-        "Match status is based on heading, available metrics, available annual section markers, and first month marker."
+        "Compared current JSON content against the live source HTML.",
+        "Metric values are normalized before comparison; status is based on annual metrics, annual planet markers, and the first month heading."
       ]
     }
   },
@@ -55,20 +61,25 @@
     "localPdfAsset": "src/assets/pdfs/screencapture-oursubhakaryam-2026-2027-sri-parabhava-nama-Midhuna-raasi-free-telugu-rasi-phalalu-Gemini-horoscope-html-2026-03-12-03_28_53.pdf",
     "sourceImage": "images/MidhunaRasinew.png",
     "audit": {
-      "status": "partial_match",
+      "status": "match",
       "sourceImage": "images/MidhunaRasinew.png",
       "matchedSignals": [
         "English heading",
+        "Adayam metric",
+        "Vyayam metric",
+        "Raja Poojyam metric",
+        "Avamanam metric",
+        "Sesha metric",
         "Guru annual section",
         "Shani annual section",
-        "Rahu annual section"
-      ],
-      "mismatches": [
+        "Rahu annual section",
+        "Ketu annual section",
         "First month heading"
       ],
+      "mismatches": [],
       "notes": [
-        "OCR used page 1 of the local PDF capture.",
-        "Match status is based on heading, available metrics, available annual section markers, and first month marker."
+        "Compared current JSON content against the live source HTML.",
+        "Metric values are normalized before comparison; status is based on annual metrics, annual planet markers, and the first month heading."
       ]
     }
   },
@@ -78,21 +89,25 @@
     "localPdfAsset": "src/assets/pdfs/screencapture-oursubhakaryam-2026-2027-sri-parabhava-nama-Karkataka-raasi-free-telugu-rasi-phalalu-Cancer-horoscope-html-2026-03-12-03_29_11.pdf",
     "sourceImage": "images/karkatakarasinew.png",
     "audit": {
-      "status": "partial_match",
+      "status": "match",
       "sourceImage": "images/karkatakarasinew.png",
       "matchedSignals": [
         "English heading",
+        "Adayam metric",
+        "Vyayam metric",
+        "Raja Poojyam metric",
+        "Avamanam metric",
+        "Sesha metric",
         "Guru annual section",
         "Shani annual section",
         "Rahu annual section",
-        "Ketu annual section"
-      ],
-      "mismatches": [
+        "Ketu annual section",
         "First month heading"
       ],
+      "mismatches": [],
       "notes": [
-        "OCR used page 1 of the local PDF capture.",
-        "Match status is based on heading, available metrics, available annual section markers, and first month marker."
+        "Compared current JSON content against the live source HTML.",
+        "Metric values are normalized before comparison; status is based on annual metrics, annual planet markers, and the first month heading."
       ]
     }
   },
@@ -102,21 +117,25 @@
     "localPdfAsset": "src/assets/pdfs/screencapture-oursubhakaryam-2026-2027-sri-parabhava-nama-Simha-raasi-free-telugu-rasi-phalalu-Leo-horoscope-html-2026-03-12-03_29_31.pdf",
     "sourceImage": "images/simharasinew.png",
     "audit": {
-      "status": "partial_match",
+      "status": "match",
       "sourceImage": "images/simharasinew.png",
       "matchedSignals": [
         "English heading",
+        "Adayam metric",
+        "Vyayam metric",
+        "Raja Poojyam metric",
+        "Avamanam metric",
+        "Sesha metric",
         "Guru annual section",
         "Shani annual section",
         "Rahu annual section",
-        "Ketu annual section"
-      ],
-      "mismatches": [
+        "Ketu annual section",
         "First month heading"
       ],
+      "mismatches": [],
       "notes": [
-        "OCR used page 1 of the local PDF capture.",
-        "Match status is based on heading, available metrics, available annual section markers, and first month marker."
+        "Compared current JSON content against the live source HTML.",
+        "Metric values are normalized before comparison; status is based on annual metrics, annual planet markers, and the first month heading."
       ]
     }
   },
@@ -130,6 +149,11 @@
       "sourceImage": "images/kanyarasinew.png",
       "matchedSignals": [
         "English heading",
+        "Adayam metric",
+        "Vyayam metric",
+        "Raja Poojyam metric",
+        "Avamanam metric",
+        "Sesha metric",
         "Guru annual section",
         "Shani annual section",
         "Rahu annual section",
@@ -138,8 +162,8 @@
       ],
       "mismatches": [],
       "notes": [
-        "OCR used page 1 of the local PDF capture.",
-        "Match status is based on heading, available metrics, available annual section markers, and first month marker."
+        "Compared current JSON content against the live source HTML.",
+        "Metric values are normalized before comparison; status is based on annual metrics, annual planet markers, and the first month heading."
       ]
     }
   },
@@ -149,21 +173,25 @@
     "localPdfAsset": "src/assets/pdfs/screencapture-oursubhakaryam-2026-2027-sri-parabhava-naama-Tula-raasi-free-telugu-raasi-phalalu-Libra-astroloy-horoscope-html-2026-03-12-03_30_10.pdf",
     "sourceImage": "images/Tularasinew.png",
     "audit": {
-      "status": "partial_match",
+      "status": "match",
       "sourceImage": "images/Tularasinew.png",
       "matchedSignals": [
         "English heading",
+        "Adayam metric",
+        "Vyayam metric",
+        "Raja Poojyam metric",
+        "Avamanam metric",
+        "Sesha metric",
         "Guru annual section",
         "Shani annual section",
         "Rahu annual section",
-        "Ketu annual section"
-      ],
-      "mismatches": [
+        "Ketu annual section",
         "First month heading"
       ],
+      "mismatches": [],
       "notes": [
-        "OCR used page 1 of the local PDF capture.",
-        "Match status is based on heading, available metrics, available annual section markers, and first month marker."
+        "Compared current JSON content against the live source HTML.",
+        "Metric values are normalized before comparison; status is based on annual metrics, annual planet markers, and the first month heading."
       ]
     }
   },
@@ -173,21 +201,25 @@
     "localPdfAsset": "src/assets/pdfs/screencapture-oursubhakaryam-2026-2027-sri-parabhava-nama-Vruchika-raasi-free-telugu-raasi-phalalu-Scorpio-astroloy-horoscope-html-2026-03-12-03_30_28.pdf",
     "sourceImage": "images/vrucchikarasinew.png",
     "audit": {
-      "status": "manual_review",
+      "status": "match",
       "sourceImage": "images/vrucchikarasinew.png",
       "matchedSignals": [
         "English heading",
+        "Adayam metric",
+        "Vyayam metric",
+        "Raja Poojyam metric",
+        "Avamanam metric",
+        "Sesha metric",
         "Guru annual section",
-        "Shani annual section"
-      ],
-      "mismatches": [
+        "Shani annual section",
         "Rahu annual section",
         "Ketu annual section",
         "First month heading"
       ],
+      "mismatches": [],
       "notes": [
-        "OCR used page 1 of the local PDF capture.",
-        "Match status is based on heading, available metrics, available annual section markers, and first month marker."
+        "Compared current JSON content against the live source HTML.",
+        "Metric values are normalized before comparison; status is based on annual metrics, annual planet markers, and the first month heading."
       ]
     }
   },
@@ -197,21 +229,25 @@
     "localPdfAsset": "src/assets/pdfs/screencapture-oursubhakaryam-2026-2027-sri-parabhava-nama-Dhanur-raasi-free-telugu-rasi-phalalu-Sagittarius-astroloy-horoscope-html-2026-03-12-03_30_47.pdf",
     "sourceImage": "images/Dhanurrasinew.png",
     "audit": {
-      "status": "partial_match",
+      "status": "match",
       "sourceImage": "images/Dhanurrasinew.png",
       "matchedSignals": [
         "English heading",
+        "Adayam metric",
+        "Vyayam metric",
+        "Raja Poojyam metric",
+        "Avamanam metric",
+        "Sesha metric",
         "Guru annual section",
         "Shani annual section",
-        "Rahu annual section"
-      ],
-      "mismatches": [
+        "Rahu annual section",
         "Ketu annual section",
         "First month heading"
       ],
+      "mismatches": [],
       "notes": [
-        "OCR used page 1 of the local PDF capture.",
-        "Match status is based on heading, available metrics, available annual section markers, and first month marker."
+        "Compared current JSON content against the live source HTML.",
+        "Metric values are normalized before comparison; status is based on annual metrics, annual planet markers, and the first month heading."
       ]
     }
   },
@@ -221,21 +257,25 @@
     "localPdfAsset": "src/assets/pdfs/screencapture-oursubhakaryam-2026-2027-sri-parabhava-naama-Makara-raasi-free-telugu-rasi-phalalu-Capricorn-horoscope-html-2026-03-12-03_31_03.pdf",
     "sourceImage": "images/MakaraRasinew.png",
     "audit": {
-      "status": "partial_match",
+      "status": "match",
       "sourceImage": "images/MakaraRasinew.png",
       "matchedSignals": [
         "English heading",
+        "Adayam metric",
+        "Vyayam metric",
+        "Raja Poojyam metric",
+        "Avamanam metric",
+        "Sesha metric",
         "Guru annual section",
         "Shani annual section",
-        "Rahu annual section"
-      ],
-      "mismatches": [
+        "Rahu annual section",
         "Ketu annual section",
         "First month heading"
       ],
+      "mismatches": [],
       "notes": [
-        "OCR used page 1 of the local PDF capture.",
-        "Match status is based on heading, available metrics, available annual section markers, and first month marker."
+        "Compared current JSON content against the live source HTML.",
+        "Metric values are normalized before comparison; status is based on annual metrics, annual planet markers, and the first month heading."
       ]
     }
   },
@@ -245,21 +285,25 @@
     "localPdfAsset": "src/assets/pdfs/screencapture-oursubhakaryam-2026-2027-sri-parabhava-naama-Kumbha-raasi-free-telugu-raasi-phalalu-Aquarius-astroloy-horoscope-html-2026-03-12-03_31_20.pdf",
     "sourceImage": "images/KumbhaRasinew.png",
     "audit": {
-      "status": "partial_match",
+      "status": "match",
       "sourceImage": "images/KumbhaRasinew.png",
       "matchedSignals": [
         "English heading",
+        "Adayam metric",
+        "Vyayam metric",
+        "Raja Poojyam metric",
+        "Avamanam metric",
+        "Sesha metric",
         "Guru annual section",
         "Shani annual section",
-        "Rahu annual section"
-      ],
-      "mismatches": [
+        "Rahu annual section",
         "Ketu annual section",
         "First month heading"
       ],
+      "mismatches": [],
       "notes": [
-        "OCR used page 1 of the local PDF capture.",
-        "Match status is based on heading, available metrics, available annual section markers, and first month marker."
+        "Compared current JSON content against the live source HTML.",
+        "Metric values are normalized before comparison; status is based on annual metrics, annual planet markers, and the first month heading."
       ]
     }
   },
@@ -269,21 +313,25 @@
     "localPdfAsset": "src/assets/pdfs/screencapture-oursubhakaryam-2026-2027-sri-parabhava-naama-Meena-raasi-free-telugu-raasi-phalalu-Pisces-astroloy-horoscope-html-2026-03-12-03_31_41.pdf",
     "sourceImage": "images/Meenarasinew.png",
     "audit": {
-      "status": "partial_match",
+      "status": "match",
       "sourceImage": "images/Meenarasinew.png",
       "matchedSignals": [
         "English heading",
+        "Adayam metric",
+        "Vyayam metric",
+        "Raja Poojyam metric",
+        "Avamanam metric",
+        "Sesha metric",
         "Guru annual section",
         "Shani annual section",
-        "Rahu annual section"
-      ],
-      "mismatches": [
+        "Rahu annual section",
         "Ketu annual section",
         "First month heading"
       ],
+      "mismatches": [],
       "notes": [
-        "OCR used page 1 of the local PDF capture.",
-        "Match status is based on heading, available metrics, available annual section markers, and first month marker."
+        "Compared current JSON content against the live source HTML.",
+        "Metric values are normalized before comparison; status is based on annual metrics, annual planet markers, and the first month heading."
       ]
     }
   }

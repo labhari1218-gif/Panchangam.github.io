@@ -13,6 +13,7 @@
     "astro": "astro",
     "verify:data": "node scripts/verify-rasi-data.mjs",
     "verify:lines": "node scripts/verify-source-lines.mjs",
+    "refresh:source-audit": "node scripts/refresh-source-audit.mjs",
     "report:pdfs": "node scripts/report-pdf-discovery.mjs",
     "generate:content": "node scripts/generate-rasi-content.mjs",
     "prompt:rasi": "node scripts/render-rasi-content-prompt.mjs",

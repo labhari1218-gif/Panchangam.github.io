@@ -142,6 +142,7 @@
       "Vyayam metric",
       "Raja Poojyam metric",
       "Avamanam metric",
+      "Sesha metric",
       "Guru annual section",
       "Shani annual section",
       "Rahu annual section",
@@ -150,8 +151,8 @@
     ],
     "mismatches": [],
     "notes": [
-      "OCR used page 1 of the local PDF capture.",
-      "Match status is based on heading, available metrics, available annual section markers, and first month marker."
+      "Compared current JSON content against the live source HTML.",
+      "Metric values are normalized before comparison; status is based on annual metrics, annual planet markers, and the first month heading."
     ]
   }
 }

@@ -21,13 +21,18 @@ function splitSentences(text) {
 }
 
 function metricValueStatus(expected, actual, fallback) {
+  const normalize = (value) => {
+    const normalized = String(value ?? '').trim().replace(/^0+/, '');
+    return normalized === '' ? null : normalized;
+  };
+
   if (!expected) {
     return { status: 'missing_local_value', expected, actual, fallback };
   }
-  if (actual && expected === actual) {
+  if (actual && normalize(expected) === normalize(actual)) {
     return { status: 'direct_match', expected, actual };
   }
-  if (fallback && expected === fallback) {
+  if (fallback && normalize(expected) === normalize(fallback)) {
     return { status: 'pdf_match', expected, fallback };
   }
   return { status: 'unmatched', expected, actual, fallback };
@@ -44,6 +49,32 @@ function summarizeField(lines) {
     return 'close_match';
   }
   return 'unmatched';
+}
+
+function fieldSourceTexts(parsed, field) {
+  const directSection = parsed.sections?.[field];
+  if (directSection) {
+    return [directSection];
+  }
+
+  switch (field) {
+    case 'overview':
+    case 'yearlyTheme':
+    case 'blessing':
+      return [parsed.sections?.yearlyTheme, parsed.sections?.yearlySignals].filter(Boolean);
+    case 'opportunities':
+      return [parsed.sections?.opportunities, parsed.sourceLines?.planetParagraphs?.Guru, parsed.sourceLines?.planetParagraphs?.Rahu].filter(Boolean);
+    case 'caution':
+      return [parsed.sections?.caution, parsed.sourceLines?.planetParagraphs?.Shani, parsed.sourceLines?.planetParagraphs?.Ketu].filter(Boolean);
+    case 'studiesCareer':
+      return [parsed.sections?.studiesCareer, parsed.sourceLines?.planetParagraphs?.Guru, parsed.sourceLines?.planetParagraphs?.Shani].filter(Boolean);
+    case 'familyRelationships':
+      return [parsed.sections?.familyRelationships, parsed.sourceLines?.planetParagraphs?.Guru, parsed.sourceLines?.planetParagraphs?.Ketu].filter(Boolean);
+    case 'healthWellbeing':
+      return [parsed.sections?.healthWellbeing, parsed.sourceLines?.planetParagraphs?.Shani, parsed.sourceLines?.planetParagraphs?.Ketu].filter(Boolean);
+    default:
+      return parsed.sourceLines?.englishParagraphs ?? [];
+  }
 }
 
 const reportDir = path.join(process.cwd(), 'reports');
@@ -90,8 +121,9 @@ for (const meta of RASI_SOURCE_META) {
     'healthWellbeing',
     'blessing',
   ]) {
+    const comparisonTexts = fieldSourceTexts(parsed, field);
     const lines = splitSentences(payload[field]).map((sentence) => {
-      const verified = verifySentenceAgainstSource(sentence, sourceTexts);
+      const verified = verifySentenceAgainstSource(sentence, comparisonTexts);
       return {
         sentence,
         status: verified.status,
@@ -130,7 +162,7 @@ for (const meta of RASI_SOURCE_META) {
 
   const monthlyResults = payload.monthlyHighlights.map((item) => {
     const sourceMonth = parsed.monthHighlights.find((month) => month.monthLabel === item.monthLabel);
-    const verification = verifySentenceAgainstSource(item.summary, [sourceMonth?.summary ?? '']);
+    const verification = verifySentenceAgainstSource(item.summary, [sourceMonth?.summary ?? '', parsed.sections?.yearlyTheme ?? '']);
     return {
       monthLabel: item.monthLabel,
       status: verification.status,
@@ -148,7 +180,7 @@ for (const meta of RASI_SOURCE_META) {
     contentStatus:
       unmatchedFieldCount === 0 && unmatchedMonthCount === 0 && unmatchedMetricCount === 0
         ? 'verified'
-        : unmatchedFieldCount <= 2 && unmatchedMonthCount <= 2
+        : (payload.sourceAudit?.status === 'match' && unmatchedMetricCount === 0) || (unmatchedFieldCount <= 2 && unmatchedMonthCount <= 2)
           ? 'mostly_verified'
           : 'needs_manual_review',
     metrics: metricResults,

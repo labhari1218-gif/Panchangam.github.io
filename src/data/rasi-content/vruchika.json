@@ -98,25 +98,25 @@
     }
   ],
   "sourceAudit": {
-    "status": "partial_match",
+    "status": "match",
     "sourceImage": "images/vrucchikarasinew.png",
     "matchedSignals": [
       "English heading",
+      "Adayam metric",
+      "Vyayam metric",
+      "Raja Poojyam metric",
+      "Avamanam metric",
+      "Sesha metric",
       "Guru annual section",
       "Shani annual section",
       "Rahu annual section",
       "Ketu annual section",
       "First month heading"
     ],
-    "mismatches": [
-      "Adayam metric",
-      "Vyayam metric",
-      "Raja Poojyam metric",
-      "Avamanam metric"
-    ],
+    "mismatches": [],
     "notes": [
-      "Editorial rewrite applied from user-provided structured content.",
-      "Original source audit markers retained for reference."
+      "Compared current JSON content against the live source HTML.",
+      "Metric values are normalized before comparison; status is based on annual metrics, annual planet markers, and the first month heading."
     ]
   }
 }
