@@ -96,5 +96,27 @@
       "monthLabel": "March 2027",
       "summary": "The year closes with a mixed but strengthening month. Income remains supportive, though inner pressure, fatigue, or mental heaviness may still arise. Encouragement from spouse or close supporters becomes important and can help restore confidence. Avoid impulsive reactions, exaggerated plans, or blindly trusting rumors, mediators, or half-verified advice. Handle tasks one step at a time. This is a month for finishing wisely rather than forcing new battles, and good judgment will protect your gains."
     }
-  ]
+  ],
+  "sourceAudit": {
+    "status": "partial_match",
+    "sourceImage": "images/vrucchikarasinew.png",
+    "matchedSignals": [
+      "English heading",
+      "Guru annual section",
+      "Shani annual section",
+      "Rahu annual section",
+      "Ketu annual section",
+      "First month heading"
+    ],
+    "mismatches": [
+      "Adayam metric",
+      "Vyayam metric",
+      "Raja Poojyam metric",
+      "Avamanam metric"
+    ],
+    "notes": [
+      "Editorial rewrite applied from user-provided structured content.",
+      "Original source audit markers retained for reference."
+    ]
+  }
 }
