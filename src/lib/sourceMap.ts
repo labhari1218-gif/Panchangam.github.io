@@ -57,10 +57,10 @@ export const RASI_SOURCE_MAP: RasiSourceMeta[] = [
   {
     id: 5,
     slug: 'simha',
-    teluguName: 'సింహ',
+    teluguName: 'సింహ రాశి',
     englishName: 'Leo',
     symbolName: 'Lion',
-    dateRangeLabel: 'Jul 23 - Aug 22',
+    dateRangeLabel: 'Jul 23 – Aug 22 • Magha (all 4 padas), Pubba / Purva Phalguni (all 4 padas), Uttara / Uttara Phalguni (1st pada)',
     symbolAsset: 'simha.png',
     sourceUrl:
       'https://www.oursubhakaryam.com/2026-2027_sri_parabhava_nama_Simha_raasi_free_telugu_rasi_phalalu_Leo_horoscope.html',
@@ -68,10 +68,10 @@ export const RASI_SOURCE_MAP: RasiSourceMeta[] = [
   {
     id: 6,
     slug: 'kanya',
-    teluguName: 'కన్య',
+    teluguName: 'కన్యా రాశి',
     englishName: 'Virgo',
     symbolName: 'Maiden',
-    dateRangeLabel: 'Aug 23 - Sep 22',
+    dateRangeLabel: 'Uttara Phalguni (2nd, 3rd, 4th padas), Hasta (all 4 padas), Chitta (1st, 2nd padas) • Aug 24 – Sep 22',
     symbolAsset: 'kanya.png',
     sourceUrl:
       'https://www.oursubhakaryam.com/2026-2027_sri_parabhava_nama_Kanya_rasi_free_telugu_raasi_phalalu_Virgo_horoscope.html',
@@ -79,10 +79,10 @@ export const RASI_SOURCE_MAP: RasiSourceMeta[] = [
   {
     id: 7,
     slug: 'tula',
-    teluguName: 'తుల',
+    teluguName: 'తులా రాశి',
     englishName: 'Libra',
     symbolName: 'Balance',
-    dateRangeLabel: 'Sep 23 - Oct 22',
+    dateRangeLabel: 'Chitta 3, 4 padas • Swati 1-4 padas • Visakha 1-3 padas',
     symbolAsset: 'tula.png',
     sourceUrl:
       'https://www.oursubhakaryam.com/2026-2027_sri_parabhava_naama_Tula_raasi_free_telugu_raasi_phalalu_Libra_astroloy_horoscope.html',
@@ -90,10 +90,10 @@ export const RASI_SOURCE_MAP: RasiSourceMeta[] = [
   {
     id: 8,
     slug: 'vruchika',
-    teluguName: 'వృశ్చిక',
+    teluguName: 'వృశ్చికం',
     englishName: 'Scorpio',
     symbolName: 'Scorpion',
-    dateRangeLabel: 'Oct 23 - Nov 21',
+    dateRangeLabel: 'Oct 23 – Nov 21',
     symbolAsset: 'vruchika.png',
     sourceUrl:
       'https://www.oursubhakaryam.com/2026-2027_sri_parabhava_nama_Vruchika_raasi_free_telugu_raasi_phalalu_Scorpio_astroloy_horoscope.html',

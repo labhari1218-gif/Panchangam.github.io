@@ -9,11 +9,11 @@ const { metrics } = Astro.props;
 
 const items = metrics
   ? [
-      { label: 'Adayam', value: metrics.adayam },
-      { label: 'Vyayam', value: metrics.vyayam },
-      { label: 'Raja Poojyam', value: metrics.rajaPoojyam },
-      { label: 'Avamanam', value: metrics.avamanam },
-      { label: 'Sesha Number', value: metrics.seshaNumber },
+      { label: 'Income', sublabel: 'Adayam', value: metrics.adayam },
+      { label: 'Expenditure', sublabel: 'Vyayam', value: metrics.vyayam },
+      { label: 'Royal Favor / Recognition', sublabel: 'Raja Poojyam', value: metrics.rajaPoojyam },
+      { label: 'Dishonor / Challenges', sublabel: 'Avamanam', value: metrics.avamanam },
+      { label: 'Balance / Remainder', sublabel: 'Shesha', value: metrics.seshaNumber },
     ].filter((item) => item.value)
   : [];
 ---
@@ -27,6 +27,7 @@ const items = metrics
           items.map((item) => (
             <div class="rounded-[1.25rem] border border-[rgba(214,179,106,0.14)] bg-[rgba(214,179,106,0.05)] px-3 py-3">
               <p class="text-[0.68rem] uppercase tracking-[0.22em] text-[var(--muted)]">{item.label}</p>
+              <p class="mt-1 text-[0.72rem] uppercase tracking-[0.18em] text-[var(--muted)]/75">{item.sublabel}</p>
               <p class="mt-2 font-display text-[1.9rem] leading-none text-[var(--accent)]">{item.value}</p>
             </div>
           ))

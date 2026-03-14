@@ -21,8 +21,9 @@ export type AnnualMetrics = {
 };
 
 export type PlanetaryInfluence = {
-  planet: 'Guru' | 'Shani' | 'Rahu' | 'Ketu';
+  planet: string;
   effect: 'favorable' | 'unfavorable' | 'mixed';
+  effectLabel?: string;
   summary: string;
   remedyNote?: string;
 };
@@ -53,6 +54,7 @@ export type RasiContent = {
   familyRelationships: string;
   healthWellbeing: string;
   blessing: string;
+  sourceNote?: string;
   sourceLabel: string;
   sourceUrl: string;
   localPdfAsset?: string;

@@ -12,8 +12,10 @@
     "preview": "astro preview",
     "astro": "astro",
     "verify:data": "node scripts/verify-rasi-data.mjs",
+    "verify:lines": "node scripts/verify-source-lines.mjs",
     "report:pdfs": "node scripts/report-pdf-discovery.mjs",
     "generate:content": "node scripts/generate-rasi-content.mjs",
+    "prompt:rasi": "node scripts/render-rasi-content-prompt.mjs",
     "audit:source": "node scripts/audit-source-vs-pdf.mjs",
     "generate:audio": "node scripts/generate-audio.mjs",
     "check": "npm run verify:data && npm run build"

@@ -1,19 +1,19 @@
 ---
 type Props = {
+  sourceNote?: string;
   sourceLabel: string;
   sourceUrl: string;
   localPdfAsset?: string;
 };
 
-const { sourceLabel, sourceUrl, localPdfAsset } = Astro.props;
+const { sourceNote, sourceLabel, sourceUrl, localPdfAsset } = Astro.props;
 ---
 
 <section class="panel rounded-[1.75rem] px-5 py-5">
   <p class="section-kicker">Source Note</p>
   <h2 class="mt-2 font-display text-[2rem] text-[var(--text)]">Original Detailed Reading</h2>
   <p class="mt-3 text-sm leading-7 text-[var(--muted)]">
-    This page has been adapted for direct reading on the web. The original long-form source remains
-    available below.
+    {sourceNote ?? 'This page has been adapted for direct reading on the web. The original long-form source remains available below.'}
   </p>
   <a
     href={sourceUrl}

@@ -6,6 +6,11 @@ type Props = {
 };
 
 const { items } = Astro.props;
+const labelForEffect = {
+  favorable: 'Favorable',
+  unfavorable: 'Unfavorable',
+  mixed: 'Mixed',
+};
 ---
 
 {
@@ -26,7 +31,7 @@ const { items } = Astro.props;
                       : 'border-[rgba(156,47,31,0.28)] text-[rgba(246,239,221,0.75)]',
                   ]}
                 >
-                  {item.effect}
+                  {item.effectLabel ?? labelForEffect[item.effect]}
                 </span>
               </div>
               <p class="mt-3 text-sm leading-7 text-[var(--muted)]">{item.summary}</p>

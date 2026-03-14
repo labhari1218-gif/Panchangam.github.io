@@ -166,6 +166,55 @@ function findParagraph(paragraphs, predicate) {
   return paragraphs.find((paragraph) => predicate(paragraph)) ?? '';
 }
 
+function sentenceTokenSet(text) {
+  return new Set(
+    cleanText(text)
+      .toLowerCase()
+      .replace(/[^a-z0-9\s]/g, ' ')
+      .split(/\s+/)
+      .filter((token) => token.length > 2),
+  );
+}
+
+function isBoundaryParagraph(paragraph) {
+  return (
+    MONTH_HEADING_RE.test(paragraph) ||
+    /we offer your complete horoscope/i.test(paragraph) ||
+    /stay updated with our daily telugu panchangam/i.test(paragraph) ||
+    /^overall[, ]|^in summary/i.test(paragraph)
+  );
+}
+
+function extractMetric(bodyText, patterns) {
+  for (const pattern of patterns) {
+    const match = bodyText.match(pattern);
+    if (match?.[1]) {
+      return match[1];
+    }
+  }
+  return undefined;
+}
+
+function extractGroupedSection(paragraphs, startMatcher, stopMatchers) {
+  const startIndex = paragraphs.findIndex((paragraph) => startMatcher(paragraph));
+  if (startIndex === -1) {
+    return '';
+  }
+
+  const collected = [];
+  for (let index = startIndex; index < paragraphs.length; index += 1) {
+    const paragraph = paragraphs[index];
+    if (index !== startIndex && (isBoundaryParagraph(paragraph) || stopMatchers.some((matcher) => matcher(paragraph)))) {
+      break;
+    }
+    if (isUsefulEnglish(paragraph)) {
+      collected.push(paragraph);
+    }
+  }
+
+  return cleanText(collected.join(' '));
+}
+
 function extractDatePhrases(text, kind) {
   const cleaned = cleanText(text);
   const phrases = [];
@@ -276,8 +325,11 @@ function buildOverview(meta, metrics, positivePlanets, cautionPlanets, mixedPlan
   const details = [];
   if (metrics.adayam && metrics.vyayam) {
     details.push(
-      `${meta.englishName} enters the Sri Parabhava year with Adayam ${metrics.adayam} and Vyayam ${metrics.vyayam}.`,
+      `${meta.englishName} enters the Sri Parabhava year with Income ${metrics.adayam} and Expenditure ${metrics.vyayam}.`,
     );
+  }
+  if (metrics.rajaPoojyam && metrics.avamanam) {
+    details.push(`Honor registers at ${metrics.rajaPoojyam}, while Dishonor registers at ${metrics.avamanam}.`);
   }
   if (positivePlanets.length > 0) {
     details.push(`The strongest supportive currents come through ${positivePlanets.join(' and ')}.`);
@@ -343,33 +395,43 @@ export function parseSourceHtml(html, meta) {
       .find((src) => src && src.startsWith('images/') && !src.includes('site_banner')) ?? undefined;
 
   const annualMetrics = {
-    adayam: bodyText.match(/Adayam \(Income\):\s*([0-9]+)/i)?.[1],
-    vyayam: bodyText.match(/Vyayam \(Expenditure\):\s*([0-9]+)/i)?.[1],
-    rajaPoojyam: bodyText.match(/Raja Poojyam \(Honor\/Respect\):\s*([0-9]+)/i)?.[1],
-    avamanam: bodyText.match(/Avamanam \(Dishonor\/Insult\):\s*([0-9]+)/i)?.[1],
+    adayam: extractMetric(bodyText, [
+      /Adayam \(Income\):\s*([0-9]+)/i,
+      /Income\s*[-:]\s*([0-9]+)/i,
+    ]),
+    vyayam: extractMetric(bodyText, [
+      /Vyayam \(Expenditure\):\s*([0-9]+)/i,
+      /Expenditure\s*[-:]\s*([0-9]+)/i,
+    ]),
+    rajaPoojyam: extractMetric(bodyText, [
+      /Raja Poojyam \(Honor\/Respect\):\s*([0-9]+)/i,
+      /Social Honou?r \(Raja Poojyam\):\s*([0-9]+)/i,
+      /Honor\/Social Status\s*[-:]\s*([0-9]+)/i,
+      /Social Honor \(Raja Poojyam\):\s*([0-9]+)/i,
+    ]),
+    avamanam: extractMetric(bodyText, [
+      /Avamanam \(Dishonor\/Insult\):\s*([0-9]+)/i,
+      /Dishonor\/Insult\s*[-:]\s*([0-9]+)/i,
+      /Dishonor\/Challenges \(Avamanam\):\s*([0-9]+)/i,
+    ]),
     seshaNumber:
-      bodyText.match(/Sesha\) number for .*? is ['"]?([0-9]+)['"]?/i)?.[1] ??
-      bodyText.match(/remainder .*? is ['"]?([0-9]+)['"]?/i)?.[1],
+      extractMetric(bodyText, [
+        /Sesha\) number for .*? is ['"]?([0-9]+)['"]?/i,
+        /remainder number .*? is ['"]?([0-9]+)['"]?/i,
+        /remainder .*? is ['"]?([0-9]+)['"]?/i,
+      ]),
   };
 
   const yearContextPattern = /parabhava/i;
+  const guruStart = (paragraph) => /(Guru Graha|Jupiter)/i.test(paragraph) && yearContextPattern.test(paragraph);
+  const shaniStart = (paragraph) => /(Elinati Shani|Saturn|Shani)/i.test(paragraph) && yearContextPattern.test(paragraph);
+  const rahuStart = (paragraph) => /\bRahu\b/i.test(paragraph) && yearContextPattern.test(paragraph);
+  const ketuStart = (paragraph) => /\b(Ketu|Kethu)\b/i.test(paragraph) && yearContextPattern.test(paragraph);
 
-  const guruParagraph = findParagraph(
-    englishParagraphs,
-    (paragraph) => /(Guru Graha|Jupiter)/i.test(paragraph) && yearContextPattern.test(paragraph),
-  );
-  const shaniParagraph = findParagraph(
-    englishParagraphs,
-    (paragraph) => /(Elinati Shani|Saturn|Shani)/i.test(paragraph) && yearContextPattern.test(paragraph),
-  );
-  const rahuParagraph = findParagraph(
-    englishParagraphs,
-    (paragraph) => /\bRahu\b/i.test(paragraph) && yearContextPattern.test(paragraph),
-  );
-  const ketuParagraph = findParagraph(
-    englishParagraphs,
-    (paragraph) => /\bKetu\b/i.test(paragraph) && yearContextPattern.test(paragraph),
-  );
+  const guruParagraph = extractGroupedSection(englishParagraphs, guruStart, [shaniStart, rahuStart, ketuStart]);
+  const shaniParagraph = extractGroupedSection(englishParagraphs, shaniStart, [guruStart, rahuStart, ketuStart]);
+  const rahuParagraph = extractGroupedSection(englishParagraphs, rahuStart, [guruStart, shaniStart, ketuStart]);
+  const ketuParagraph = extractGroupedSection(englishParagraphs, ketuStart, [guruStart, shaniStart, rahuStart]);
 
   const planetaryInfluences = [
     {
@@ -407,17 +469,18 @@ export function parseSourceHtml(html, meta) {
     }
 
     const monthLabel = `${headingMatch[1]} ${headingMatch[2]}`;
-    let summary = '';
-    for (let scanIndex = index + 1; scanIndex < Math.min(index + 8, paragraphNodes.length); scanIndex += 1) {
+    const fragments = [];
+    for (let scanIndex = index + 1; scanIndex < Math.min(index + 10, paragraphNodes.length); scanIndex += 1) {
       const candidate = cleanText($(paragraphNodes[scanIndex]).text());
       if (MONTH_HEADING_RE.test(candidate)) {
         break;
       }
       if (isUsefulEnglish(candidate)) {
-        summary = candidate;
-        break;
+        fragments.push(candidate);
       }
     }
+
+    const summary = cleanText(fragments.join(' '));
 
     if (!summary) {
       continue;
@@ -532,6 +595,15 @@ export function parseSourceHtml(html, meta) {
     annualMetrics,
     planetaryInfluences,
     monthHighlights,
+    sourceLines: {
+      englishParagraphs,
+      planetParagraphs: {
+        Guru: guruParagraph,
+        Shani: shaniParagraph,
+        Rahu: rahuParagraph,
+        Ketu: ketuParagraph,
+      },
+    },
     sections: {
       overview: buildOverview(
         meta,
@@ -551,6 +623,40 @@ export function parseSourceHtml(html, meta) {
       yearlySignals,
     },
   };
+}
+
+export function verifySentenceAgainstSource(sentence, sourceTexts) {
+  const normalizedSentence = cleanText(sentence);
+  if (!normalizedSentence) {
+    return { status: 'skipped', source: '' };
+  }
+
+  const loweredSentence = normalizedSentence.toLowerCase();
+  const sentenceTokens = sentenceTokenSet(normalizedSentence);
+  let bestScore = 0;
+  let bestSource = '';
+
+  for (const sourceText of sourceTexts.filter(Boolean)) {
+    const loweredSource = sourceText.toLowerCase();
+    if (loweredSource.includes(loweredSentence)) {
+      return { status: 'direct_match', source: sourceText };
+    }
+
+    const sourceTokens = sentenceTokenSet(sourceText);
+    const intersection = [...sentenceTokens].filter((token) => sourceTokens.has(token)).length;
+    const denominator = Math.max(sentenceTokens.size, 1);
+    const score = intersection / denominator;
+    if (score > bestScore) {
+      bestScore = score;
+      bestSource = sourceText;
+    }
+  }
+
+  if (bestScore >= 0.72) {
+    return { status: 'close_match', source: bestSource };
+  }
+
+  return { status: 'unmatched', source: bestSource };
 }
 
 export async function downloadSourceImage(sourceImage, slug) {
