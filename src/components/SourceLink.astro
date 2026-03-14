@@ -3,10 +3,9 @@ type Props = {
   sourceNote?: string;
   sourceLabel: string;
   sourceUrl: string;
-  localPdfAsset?: string;
 };
 
-const { sourceNote, sourceLabel, sourceUrl, localPdfAsset } = Astro.props;
+const { sourceNote, sourceLabel, sourceUrl } = Astro.props;
 ---
 
 <section class="panel rounded-[1.75rem] px-5 py-5">
@@ -23,11 +22,4 @@ const { sourceNote, sourceLabel, sourceUrl, localPdfAsset } = Astro.props;
   >
     {sourceLabel}
   </a>
-  {
-    localPdfAsset ? (
-      <p class="mt-4 text-xs leading-6 text-[rgba(246,239,221,0.58)]">
-        Local PDF archive detected for editorial reference: {localPdfAsset}
-      </p>
-    ) : null
-  }
 </section>
